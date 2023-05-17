@@ -45,7 +45,7 @@
                             <h4 class="text-uppercase"><?= Competition::findById(1)->getTitle() ?></h4>
                             <h3>R A T I N G&nbsp;&nbsp;&nbsp;&nbsp;S H E E T</h3>
                         </div>
-                        <div class="col-md-6 text-center" align="center">
+                        <div class="col-md-6 text-center pt-3" align="center">
                             <div style="display: inline-block; width: 320px;">
                                 <div style="border-bottom: 2px solid black" align="left">
                                     <small>JUDGE <b>#___</b></small> :
@@ -139,7 +139,7 @@
 
                     <div class="row justify-content-center pt-5">
                         <div class="col-md-7">
-                            <p class="mt-4">
+                            <p class="py-2 m-0">
                                 <b>NOTE: </b>
                                 Please utilize this printed rating sheet for note-taking purposes only.
                                 Kindly record the final ratings of candidates in the digital rating sheets we will supply.
@@ -150,7 +150,7 @@
 
                         <div class="col-md-2">
                             <div class="h-100 d-flex justify-content-center align-items-center">
-                                <img src="/mk/aclc-iriga.png" alt="ACLC College of Iriga (Official Tabulator)" style="width: 160px;"/>
+                                <img src="/mk/aclc-iriga.png" alt="ACLC College of Iriga (Official Tabulator)" style="width: 156px;"/>
                             </div>
                         </div>
                     </div>
