@@ -39,7 +39,6 @@ app/crud/uploads/*
 !app/crud/uploads/18-maria-ysabella-francesca-sapienza.jpg
 !app/crud/uploads/19-seannel-adderie-cruz.jpg
 !app/crud/uploads/20-maria-paula-batalla.jpg
-!app/crud/uploads/candidate.png
 !app/crud/uploads/no-avatar.jpg
 !app/crud/dist
 /cypress/videos/

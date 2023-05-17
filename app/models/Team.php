@@ -36,8 +36,7 @@ class Team extends App
                 $this->number = $row['number'];
                 $this->name = $row['name'];
                 $this->location = $row['location'];
-                if(file_exists('crud/uploads/' . $row['avatar']))
-                    $this->avatar = $row['avatar'];
+                $this->avatar = $row['avatar'];
             }
         }
     }
