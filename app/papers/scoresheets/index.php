@@ -124,7 +124,7 @@
 
                                 <!-- rating box -->
                                 <?php foreach($event->getAllCriteria() as $criterion) { ?>
-                                    <td class="bb br"<?php if($event->getSlug() == 'festival-costume' && $criterion->getId() != 3) echo 'style="background: #eff"'; ?>></td>
+                                    <td class="bb br"<?php if($event->getSlug() == 'kaogma-festival-costume' && $criterion->getId() != 3) echo 'style="background: #eff"'; ?>></td>
                                 <?php } ?>
 
                                 <!-- total box -->
