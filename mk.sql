@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2023 at 05:25 AM
+-- Generation Time: May 17, 2023 at 09:28 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -45,7 +45,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `number`, `name`, `avatar`, `username`, `password`, `called_at`, `pinged_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'DEVELOPMENT', 'no-avatar.jpg', 'admin', 'admin', NULL, NULL, '2023-02-19 07:36:32', '2023-05-15 12:28:38');
+(1, 1, 'DEVELOPMENT', 'no-avatar.jpg', 'admin', 'admin', NULL, NULL, '2023-02-19 07:36:32', '2023-05-17 07:28:00');
 
 -- --------------------------------------------------------
 
@@ -125,9 +125,9 @@ CREATE TABLE `criteria` (
 --
 
 INSERT INTO `criteria` (`id`, `event_id`, `title`, `percentage`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Originality, Theme Relevance, Design & Aesthetics', 50, '2023-05-13 12:58:46', '2023-05-13 13:12:01'),
+(1, 1, 'Originality, Theme Relevance, Design & Aesthetics', 40, '2023-05-13 12:58:46', '2023-05-17 07:24:13'),
 (2, 1, 'Stage Presence', 20, '2023-05-13 12:59:58', '2023-05-16 22:34:02'),
-(3, 1, 'Craftsmanship', 30, '2023-05-13 12:59:02', '2023-05-16 22:34:05');
+(3, 1, 'Craftsmanship', 40, '2023-05-13 12:59:02', '2023-05-17 07:24:30');
 
 -- --------------------------------------------------------
 
