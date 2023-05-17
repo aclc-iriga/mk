@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2023 at 09:28 AM
+-- Generation Time: May 17, 2023 at 09:37 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -126,8 +126,8 @@ CREATE TABLE `criteria` (
 
 INSERT INTO `criteria` (`id`, `event_id`, `title`, `percentage`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Originality, Theme Relevance, Design & Aesthetics', 40, '2023-05-13 12:58:46', '2023-05-17 07:24:13'),
-(2, 1, 'Stage Presence', 20, '2023-05-13 12:59:58', '2023-05-16 22:34:02'),
-(3, 1, 'Craftsmanship', 40, '2023-05-13 12:59:02', '2023-05-17 07:24:30');
+(2, 1, 'Stage Presence', 40, '2023-05-13 12:59:58', '2023-05-17 07:37:08'),
+(3, 1, 'Craftsmanship', 20, '2023-05-13 12:59:02', '2023-05-17 07:37:12');
 
 -- --------------------------------------------------------
 
