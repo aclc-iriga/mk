@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 17, 2023 at 12:34 AM
+-- Generation Time: May 17, 2023 at 05:25 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -180,7 +180,7 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `category_id`, `slug`, `title`, `created_at`, `updated_at`) VALUES
-(1, 1, 'festival-costume', 'Festival Costume', '2023-05-13 12:57:42', '2023-05-13 12:57:42');
+(1, 1, 'kaogma-festival-costume', 'Kaogma Festival Costume', '2023-05-13 12:57:42', '2023-05-17 03:23:01');
 
 -- --------------------------------------------------------
 
@@ -402,7 +402,7 @@ CREATE TABLE `titles` (
 --
 
 INSERT INTO `titles` (`id`, `event_id`, `rank`, `title`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Best in Festival Costume', '2023-05-13 13:05:01', '2023-05-13 13:05:01');
+(1, 1, 1, 'Best in Kaogma Festival Costume', '2023-05-13 13:05:01', '2023-05-17 03:25:05');
 
 --
 -- Indexes for dumped tables
