@@ -245,7 +245,7 @@
                             <v-row class="justify-center">
                                 <v-col
                                     v-for="technical in technicals" :key="technical.id"
-                                    md="4"
+                                    md="3"
                                 >
                                     <v-card class="text-center mb-5" :class="{ 'text-warning': technical.calling }" flat>
                                         <v-card-title class="pt-16 font-weight-bold">
@@ -263,7 +263,7 @@
 
                                 <v-col
                                     v-for="judge in judges" :key="judge.id"
-                                    md="4"
+                                    md="3"
                                 >
                                     <v-card class="text-center mb-5" :class="{ 'text-warning': judge.calling }" flat>
                                         <v-card-title class="pt-16 font-weight-bold">
