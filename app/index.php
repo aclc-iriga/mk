@@ -61,6 +61,7 @@ $routes = [
     [ "name" => "CRUD", "route" => "crud/competitions.php" ],
     [ "name" => "User Assignments", "route" => "crud/assignment" ],
     [ "name" => "Eliminations", "route" => "crud/eliminations" ],
+    [ "name" => "Enable / Disable", "route" => "crud/noshow" ],
     [ "name" => "Scoresheets" , "route" => "papers/scoresheets" ],
     [ "name" => "Best Designer" , "route" => "results/best-designer" ]
 ];
@@ -113,8 +114,6 @@ $routes = [
             </div>
 
             <div class="row g-3 justify-content-center">
-
-                <!-- Guidelines -->
                 <?php foreach ($routes as $route){ ?>
                 <div onclick="window.open('<?php echo $route['route'] ?>', '_blank');" class="col-md-4" >
                     <div class="card" >
