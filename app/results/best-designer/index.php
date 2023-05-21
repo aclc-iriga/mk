@@ -433,8 +433,10 @@
                             <tbody>
                             <?php
                             $i = 0;
+                            $total_criteria_points = 0;
                             foreach($criteria as $criterion_key => $criterion) {
                                 $i += 1;
+                                $total_criteria_points += $criterion->getPercentage();
                             ?>
                                 <tr>
                                     <td class="px-3">
@@ -446,6 +448,12 @@
                                 </tr>
                             <?php } ?>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="3" class="px-3 pt-2" style="text-align: right !important;">TOTAL : </th>
+                                    <th class="px-3 pt-2" style="text-align: right !important;"><?= number_format($total_criteria_points, 2) ?></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </td>
                 </tr>
