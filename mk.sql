@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2023 at 05:28 AM
+-- Generation Time: May 21, 2023 at 08:00 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -159,6 +159,13 @@ CREATE TABLE `eliminations` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `eliminations`
+--
+
+INSERT INTO `eliminations` (`id`, `event_id`, `team_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 13, '2023-05-21 06:00:21', '2023-05-21 06:00:21');
 
 -- --------------------------------------------------------
 
@@ -585,7 +592,7 @@ ALTER TABLE `deductions`
 -- AUTO_INCREMENT for table `eliminations`
 --
 ALTER TABLE `eliminations`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `events`
