@@ -28,7 +28,7 @@
 					>
 						<div class="d-flex h-100 flex-column align-content-space-between">
 							<p class="text-grey-darken-2" :class="$vuetify.display.mdAndDown ? 'text-subtitle-1' : ''">{{ criterion.title }}</p>
-							<b class="text-grey-darken-4" :class="$vuetify.display.mdAndDown ? 'text-subtitle-2 font-weight-bold' : ''" style="margin-top: auto">{{ criterion.percentage }}%</b>
+                            <b class="text-grey-darken-4" :class="$vuetify.display.mdAndDown ? 'text-subtitle-2 font-weight-bold' : ''" style="margin-top: auto">{{ criterion.percentage }} <small class="text-lowercase">pts.</small></b>
 						</div>
 					</th>
 					<th
