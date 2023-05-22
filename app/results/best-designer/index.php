@@ -421,40 +421,45 @@
             </tbody>
             <tfoot>
                 <tr class="text-secondary">
-                    <td colspan="<?= 9 + (sizeof($judges) * 2) ?>" class="bl bb br py-3" align="center">
-                        <table class="d-inline-block">
-                            <thead>
-                                <tr>
-                                    <th colspan="2" class="text-center">CRITERIA</th>
-                                    <th class="text-center">PORTION</th>
-                                    <th class="text-center">POINTS</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php
-                            $i = 0;
-                            $total_criteria_points = 0;
-                            foreach($criteria as $criterion_key => $criterion) {
-                                $i += 1;
-                                $total_criteria_points += $criterion->getPercentage();
-                            ?>
-                                <tr>
-                                    <td class="px-3">
-                                        <h6 class="m-0 fw-bold">C<?= $i ?></h6>
-                                    </td>
-                                    <td class="px-3"><?= $criterion->getTitle() ?></td>
-                                    <td class="px-3"><?= $criterion->getEvent()->getTitle() ?></td>
-                                    <td align="right" class="px-3"><?= number_format($criterion->getPercentage(), 2) ?></td>
-                                </tr>
-                            <?php } ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="3" class="px-3 pt-2" style="text-align: right !important;">TOTAL : </th>
-                                    <th class="px-3 pt-2" style="text-align: right !important;"><?= number_format($total_criteria_points, 2) ?></th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                    <td colspan="<?= 9 + (sizeof($judges) * 2) ?>" class="bl bb br pt-3 px-3" style="vertical-align: middle !important;" align="center">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex">
+                                <table class="me-4">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2" class="text-center">CRITERIA</th>
+                                            <th class="text-center">PORTION</th>
+                                            <th class="text-center">POINTS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $i = 0;
+                                    $total_criteria_points = 0;
+                                    foreach($criteria as $criterion_key => $criterion) {
+                                        $i += 1;
+                                        $total_criteria_points += $criterion->getPercentage();
+                                    ?>
+                                        <tr>
+                                            <td class="px-3">
+                                                <h6 class="m-0 fw-bold">C<?= $i ?></h6>
+                                            </td>
+                                            <td class="px-3"><?= $criterion->getTitle() ?></td>
+                                            <td class="px-3"><?= $criterion->getEvent()->getTitle() ?></td>
+                                            <td align="right" class="px-3"><?= number_format($criterion->getPercentage(), 2) ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="3" class="px-3 pt-2" style="text-align: right !important;">TOTAL : </th>
+                                            <th class="px-3 pt-2" style="text-align: right !important;"><?= number_format($total_criteria_points, 2) ?></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <img src="/mk/aclc-iriga.png" class="ml-auto" style="width: 200px; opacity: 0.7" alt="Official Tabulator">
+                        </div>
                     </td>
                 </tr>
             </tfoot>
