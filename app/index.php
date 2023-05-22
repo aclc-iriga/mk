@@ -55,16 +55,16 @@ else if(isset($_POST['signOut'])) {
 }
 
 
-
 $routes = [
-    [ "name" => "Tabulation", "route" => "/mk" ],
-    [ "name" => "CRUD", "route" => "crud/competitions.php" ],
+    [ "name" => "Tabulation"      , "route" => "/mk" ],
+    [ "name" => "CRUD"            , "route" => "crud/competitions.php" ],
     [ "name" => "User Assignments", "route" => "crud/assignment" ],
-    [ "name" => "Eliminations", "route" => "crud/eliminations" ],
+    [ "name" => "Eliminations"    , "route" => "crud/eliminations" ],
     [ "name" => "Enable / Disable", "route" => "crud/noshow" ],
-    [ "name" => "Scoresheets" , "route" => "papers/scoresheets" ],
-    [ "name" => "Best Designer" , "route" => "results/best-designer" ],
-    [ "name" => "Top 10" , "route" => "results/top10" ]
+    [ "name" => "Scoresheets"     , "route" => "papers/scoresheets" ],
+    [ "name" => "Best Designer"   , "route" => "results/best-designer" ],
+    [ "name" => "Best in Swimsuit", "route" => "results/best-in-swimsuit" ],
+    [ "name" => "Top 10"          , "route" => "results/top10" ]
 ];
 ?>
 <!DOCTYPE html>
