@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2023 at 08:00 AM
+-- Generation Time: May 22, 2023 at 11:13 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -45,7 +45,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `number`, `name`, `avatar`, `username`, `password`, `called_at`, `pinged_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 'DEVELOPMENT', 'no-avatar.jpg', 'admin', 'admin', NULL, NULL, '2023-02-19 07:36:32', '2023-05-18 03:28:30');
+(1, 1, 'DEVELOPMENT', 'no-avatar.jpg', 'admin', 'admin', NULL, NULL, '2023-02-19 07:36:32', '2023-05-22 09:11:03');
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `competition_id`, `slug`, `title`, `created_at`, `updated_at`) VALUES
-(1, 1, 'preliminaries', 'Preliminaries', '2023-04-06 13:25:10', '2023-05-13 12:54:45');
+(1, 1, 'preliminaries', 'Preliminaries', '2023-04-06 13:25:10', '2023-05-13 12:54:45'),
+(2, 1, 'prejudging', 'Prejudging', '2023-05-22 09:08:23', '2023-05-22 09:08:23');
 
 -- --------------------------------------------------------
 
@@ -127,7 +128,10 @@ CREATE TABLE `criteria` (
 INSERT INTO `criteria` (`id`, `event_id`, `title`, `percentage`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Originality, Theme Relevance, Design & Aesthetics', 40, '2023-05-13 12:58:46', '2023-05-17 07:24:13'),
 (2, 1, 'Stage Presence', 40, '2023-05-13 12:59:58', '2023-05-17 07:37:08'),
-(3, 1, 'Craftsmanship', 20, '2023-05-13 12:59:02', '2023-05-17 07:37:12');
+(3, 1, 'Craftsmanship', 20, '2023-05-13 12:59:02', '2023-05-17 07:37:12'),
+(4, 2, 'Beauty of the Face', 40, '2023-05-22 09:09:14', '2023-05-22 09:09:14'),
+(5, 2, 'Figure', 30, '2023-05-22 09:09:26', '2023-05-22 09:09:26'),
+(6, 2, 'Personality / Intelligence', 30, '2023-05-22 09:09:39', '2023-05-22 09:09:39');
 
 -- --------------------------------------------------------
 
@@ -187,7 +191,8 @@ CREATE TABLE `events` (
 --
 
 INSERT INTO `events` (`id`, `category_id`, `slug`, `title`, `created_at`, `updated_at`) VALUES
-(1, 1, 'kaogma-festival-costume', 'Kaogma Festival Costume', '2023-05-13 12:57:42', '2023-05-17 03:23:01');
+(1, 1, 'kaogma-festival-costume', 'Kaogma Festival Costume', '2023-05-13 12:57:42', '2023-05-17 03:23:01'),
+(2, 2, 'prejudging', 'Prejudging', '2023-05-22 09:08:43', '2023-05-22 09:08:43');
 
 -- --------------------------------------------------------
 
@@ -216,7 +221,12 @@ INSERT INTO `judges` (`id`, `number`, `name`, `avatar`, `username`, `password`, 
 (1, 1, 'Judge 01', 'no-avatar.jpg', 'judge01', 'judge01', NULL, NULL, '2023-04-06 13:58:11', '2023-05-13 13:03:04'),
 (2, 2, 'Judge 02', 'no-avatar.jpg', 'judge02', 'judge02', NULL, NULL, '2023-04-06 13:58:28', '2023-05-13 13:03:06'),
 (3, 3, 'Judge 03', 'no-avatar.jpg', 'judge03', 'judge03', NULL, NULL, '2023-04-06 13:58:42', '2023-05-13 13:03:10'),
-(4, 4, 'Judge 04', 'no-avatar.jpg', 'judge04', 'judge04', NULL, NULL, '2023-05-18 03:27:54', '2023-05-18 03:27:54');
+(4, 4, 'Judge 04', 'no-avatar.jpg', 'judge04', 'judge04', NULL, NULL, '2023-05-18 03:27:54', '2023-05-18 03:27:54'),
+(5, 1, 'Pageant 01', 'no-avatar.jpg', 'pageant01', 'pageant01', NULL, NULL, '2023-05-22 09:06:05', '2023-05-22 09:06:05'),
+(6, 2, 'Pageant 02', 'no-avatar.jpg', 'pageant02', 'pageant02', NULL, NULL, '2023-05-22 09:06:22', '2023-05-22 09:06:22'),
+(7, 3, 'Pageant 03', 'no-avatar.jpg', 'pageant03', 'pageant03', NULL, NULL, '2023-05-22 09:06:43', '2023-05-22 09:06:43'),
+(8, 4, 'Pageant 04', 'no-avatar.jpg', 'pageant04', 'pageant04', NULL, NULL, '2023-05-22 09:07:00', '2023-05-22 09:07:00'),
+(9, 5, 'Pageant 05', 'no-avatar.jpg', 'pageant05', 'pageant05', NULL, NULL, '2023-05-22 09:07:15', '2023-05-22 09:07:15');
 
 -- --------------------------------------------------------
 
@@ -241,7 +251,12 @@ INSERT INTO `judge_event` (`id`, `judge_id`, `event_id`, `is_chairman`, `created
 (1, 1, 1, 0, '2023-05-13 13:05:35', '2023-05-13 13:05:35'),
 (2, 2, 1, 0, '2023-05-13 13:05:39', '2023-05-13 13:05:39'),
 (3, 3, 1, 0, '2023-05-13 13:05:43', '2023-05-13 13:05:43'),
-(4, 4, 1, 0, '2023-05-18 03:28:13', '2023-05-18 03:28:13');
+(4, 4, 1, 0, '2023-05-18 03:28:13', '2023-05-18 03:28:13'),
+(5, 5, 2, 0, '2023-05-22 09:10:15', '2023-05-22 09:10:15'),
+(6, 6, 2, 0, '2023-05-22 09:10:20', '2023-05-22 09:10:20'),
+(7, 7, 2, 0, '2023-05-22 09:10:26', '2023-05-22 09:10:26'),
+(8, 8, 2, 0, '2023-05-22 09:10:32', '2023-05-22 09:10:32'),
+(9, 9, 2, 0, '2023-05-22 09:10:36', '2023-05-22 09:10:36');
 
 -- --------------------------------------------------------
 
@@ -568,7 +583,7 @@ ALTER TABLE `arrangements`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `competitions`
@@ -580,7 +595,7 @@ ALTER TABLE `competitions`
 -- AUTO_INCREMENT for table `criteria`
 --
 ALTER TABLE `criteria`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `deductions`
@@ -598,19 +613,19 @@ ALTER TABLE `eliminations`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `judges`
 --
 ALTER TABLE `judges`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `judge_event`
 --
 ALTER TABLE `judge_event`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `noshows`
