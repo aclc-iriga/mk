@@ -20,7 +20,7 @@
     // initialize location quota
     const LOCATION_QUOTA = 2;
 
-    // color code
+    // initialize color code
     const COLOR_CODE = [
         'legitimate' => 'primary',
         'inserted'   => 'success',
