@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2023 at 04:59 PM
+-- Generation Time: May 22, 2023 at 07:05 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -136,7 +136,9 @@ INSERT INTO `criteria` (`id`, `event_id`, `title`, `percentage`, `created_at`, `
 (7, 3, 'Beauty of the Face', 40, '2023-05-22 13:29:14', '2023-05-22 13:29:14'),
 (8, 3, 'Figure', 30, '2023-05-22 13:29:24', '2023-05-22 13:29:24'),
 (9, 4, 'Rating', 100, '2023-05-22 13:51:00', '2023-05-22 13:51:00'),
-(10, 5, 'Intelligence', 30, '2023-05-22 14:57:01', '2023-05-22 14:57:01');
+(10, 5, 'Intelligence', 30, '2023-05-22 14:57:01', '2023-05-22 14:57:01'),
+(11, 6, 'Beauty and Stage Presence', 60, '2023-05-22 16:52:42', '2023-05-22 16:52:42'),
+(12, 6, 'Intelligence', 40, '2023-05-22 16:52:54', '2023-05-22 16:52:54');
 
 -- --------------------------------------------------------
 
@@ -194,7 +196,27 @@ INSERT INTO `eliminations` (`id`, `event_id`, `team_id`, `created_at`, `updated_
 (18, 5, 17, '2023-05-22 14:57:36', '2023-05-22 14:57:36'),
 (19, 5, 18, '2023-05-22 14:57:37', '2023-05-22 14:57:37'),
 (20, 5, 19, '2023-05-22 14:57:39', '2023-05-22 14:57:39'),
-(21, 5, 20, '2023-05-22 14:57:40', '2023-05-22 14:57:40');
+(21, 5, 20, '2023-05-22 14:57:40', '2023-05-22 14:57:40'),
+(22, 6, 1, '2023-05-22 16:56:26', '2023-05-22 16:56:26'),
+(23, 6, 2, '2023-05-22 16:56:27', '2023-05-22 16:56:27'),
+(24, 6, 3, '2023-05-22 16:56:28', '2023-05-22 16:56:28'),
+(25, 6, 4, '2023-05-22 16:56:29', '2023-05-22 16:56:29'),
+(26, 6, 5, '2023-05-22 16:56:30', '2023-05-22 16:56:30'),
+(27, 6, 6, '2023-05-22 16:56:32', '2023-05-22 16:56:32'),
+(28, 6, 7, '2023-05-22 16:56:33', '2023-05-22 16:56:33'),
+(29, 6, 8, '2023-05-22 16:56:34', '2023-05-22 16:56:34'),
+(30, 6, 9, '2023-05-22 16:56:35', '2023-05-22 16:56:35'),
+(31, 6, 10, '2023-05-22 16:56:36', '2023-05-22 16:56:36'),
+(32, 6, 11, '2023-05-22 16:56:37', '2023-05-22 16:56:37'),
+(33, 6, 12, '2023-05-22 16:56:38', '2023-05-22 16:56:38'),
+(34, 6, 13, '2023-05-22 16:56:39', '2023-05-22 16:56:39'),
+(35, 6, 14, '2023-05-22 16:56:40', '2023-05-22 16:56:40'),
+(36, 6, 15, '2023-05-22 16:56:41', '2023-05-22 16:56:41'),
+(37, 6, 16, '2023-05-22 16:56:42', '2023-05-22 16:56:42'),
+(38, 6, 17, '2023-05-22 16:56:43', '2023-05-22 16:56:43'),
+(39, 6, 18, '2023-05-22 16:56:44', '2023-05-22 16:56:44'),
+(40, 6, 19, '2023-05-22 16:56:45', '2023-05-22 16:56:45'),
+(41, 6, 20, '2023-05-22 16:56:46', '2023-05-22 16:56:46');
 
 -- --------------------------------------------------------
 
@@ -220,7 +242,8 @@ INSERT INTO `events` (`id`, `category_id`, `slug`, `title`, `created_at`, `updat
 (2, 2, 'prejudging', 'Prejudging', '2023-05-22 09:08:43', '2023-05-22 09:08:43'),
 (3, 3, 'swimsuit', 'Swimsuit', '2023-05-22 13:28:40', '2023-05-22 13:28:40'),
 (4, 3, 'evening-gown', 'Evening Gown', '2023-05-22 13:49:05', '2023-05-22 13:49:05'),
-(5, 3, 'top10-qa', 'Top 10 Q&A', '2023-05-22 14:56:45', '2023-05-22 14:56:45');
+(5, 3, 'top10-qa', 'Top 10 Q&A', '2023-05-22 14:56:45', '2023-05-22 14:56:45'),
+(6, 3, 'top5-qa', 'Top 5 Q&A', '2023-05-22 16:51:24', '2023-05-22 16:51:24');
 
 -- --------------------------------------------------------
 
@@ -299,7 +322,12 @@ INSERT INTO `judge_event` (`id`, `judge_id`, `event_id`, `is_chairman`, `created
 (21, 6, 5, 0, '2023-05-22 14:58:37', '2023-05-22 14:58:37'),
 (22, 7, 5, 0, '2023-05-22 14:58:43', '2023-05-22 14:58:43'),
 (23, 8, 5, 0, '2023-05-22 14:58:48', '2023-05-22 14:58:48'),
-(24, 9, 5, 0, '2023-05-22 14:58:52', '2023-05-22 14:58:52');
+(24, 9, 5, 0, '2023-05-22 14:58:52', '2023-05-22 14:58:52'),
+(25, 5, 6, 0, '2023-05-22 16:53:15', '2023-05-22 16:53:15'),
+(26, 6, 6, 0, '2023-05-22 16:53:20', '2023-05-22 16:53:20'),
+(27, 7, 6, 0, '2023-05-22 16:53:34', '2023-05-22 16:53:34'),
+(28, 8, 6, 0, '2023-05-22 16:53:41', '2023-05-22 16:53:41'),
+(29, 9, 6, 0, '2023-05-22 16:53:47', '2023-05-22 16:53:47');
 
 -- --------------------------------------------------------
 
@@ -496,7 +524,12 @@ CREATE TABLE `titles` (
 
 INSERT INTO `titles` (`id`, `event_id`, `rank`, `title`, `created_at`, `updated_at`) VALUES
 (1, 1, 1, 'Best in Kaogma Festival Costume', '2023-05-13 13:05:01', '2023-05-17 03:25:05'),
-(2, 4, 1, 'Best in Evening Gown', '2023-05-22 13:57:02', '2023-05-22 13:57:02');
+(2, 4, 1, 'Best in Evening Gown', '2023-05-22 13:57:02', '2023-05-22 13:57:02'),
+(3, 6, 1, 'MISS KAOGMA 2023', '2023-05-22 17:01:37', '2023-05-22 17:01:37'),
+(4, 6, 2, 'MISS CAMARINES SUR', '2023-05-22 17:01:37', '2023-05-22 17:05:09'),
+(5, 6, 3, 'MISS TOURISM', '2023-05-22 17:01:37', '2023-05-22 17:05:13'),
+(6, 6, 4, '1st RUNNER UP', '2023-05-22 17:01:37', '2023-05-22 17:01:37'),
+(7, 6, 5, '2nd RUNNER UP', '2023-05-22 17:01:37', '2023-05-22 17:01:37');
 
 --
 -- Indexes for dumped tables
@@ -665,7 +698,7 @@ ALTER TABLE `competitions`
 -- AUTO_INCREMENT for table `criteria`
 --
 ALTER TABLE `criteria`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `deductions`
@@ -677,13 +710,13 @@ ALTER TABLE `deductions`
 -- AUTO_INCREMENT for table `eliminations`
 --
 ALTER TABLE `eliminations`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `judges`
@@ -695,7 +728,7 @@ ALTER TABLE `judges`
 -- AUTO_INCREMENT for table `judge_event`
 --
 ALTER TABLE `judge_event`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `noshows`
@@ -743,7 +776,7 @@ ALTER TABLE `technical_event`
 -- AUTO_INCREMENT for table `titles`
 --
 ALTER TABLE `titles`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
