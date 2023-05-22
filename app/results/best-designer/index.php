@@ -339,11 +339,11 @@
                     </td>
 
                     <!-- avatar -->
-                    <td class="bb" style="width: 56px;">
+                    <td class="bb" style="width: 64px;">
                         <img
                             src="../../crud/uploads/<?= $team['info']['avatar'] ?>"
                             alt="<?= $team['info']['number'] ?>"
-                            style="width: 56px; border-radius: 100%"
+                            style="width: 64px; border-radius: 100%"
                         >
                     </td>
 
@@ -515,9 +515,9 @@
                             class="text-center font-weight-bold pl-3 py-3 pr-6"
                             style="border-left: 1px solid #ddd; border-bottom: 1px solid #ddd;"
                         >
-                            <h3 class="m-0"><?= $team['info']['number'] ?></h3>
+                            <h2 class="m-0 fw-bold"><?= $team['info']['number'] ?></h2>
                         </td>
-                        <td style="width: 72px; padding-top: 8px !important; padding-bottom: 8px !important; border-bottom: 1px solid #ddd;">
+                        <td style="width: 88px; padding-top: 8px !important; padding-bottom: 8px !important; border-bottom: 1px solid #ddd;">
                             <img
                                 style="width: 100%; border-radius: 100%;"
                                 src="../../crud/uploads/<?= $team['info']['avatar'] ?>"
