@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2023 at 03:34 PM
+-- Generation Time: May 22, 2023 at 03:57 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -134,7 +134,8 @@ INSERT INTO `criteria` (`id`, `event_id`, `title`, `percentage`, `created_at`, `
 (5, 2, 'Figure', 30, '2023-05-22 09:09:26', '2023-05-22 09:09:26'),
 (6, 2, 'Personality / Intelligence', 30, '2023-05-22 09:09:39', '2023-05-22 09:09:39'),
 (7, 3, 'Beauty of the Face', 40, '2023-05-22 13:29:14', '2023-05-22 13:29:14'),
-(8, 3, 'Figure', 30, '2023-05-22 13:29:24', '2023-05-22 13:29:24');
+(8, 3, 'Figure', 30, '2023-05-22 13:29:24', '2023-05-22 13:29:24'),
+(9, 4, 'Rating', 100, '2023-05-22 13:51:00', '2023-05-22 13:51:00');
 
 -- --------------------------------------------------------
 
@@ -196,7 +197,8 @@ CREATE TABLE `events` (
 INSERT INTO `events` (`id`, `category_id`, `slug`, `title`, `created_at`, `updated_at`) VALUES
 (1, 1, 'kaogma-festival-costume', 'Kaogma Festival Costume', '2023-05-13 12:57:42', '2023-05-17 03:23:01'),
 (2, 2, 'prejudging', 'Prejudging', '2023-05-22 09:08:43', '2023-05-22 09:08:43'),
-(3, 3, 'swimsuit', 'Swimsuit', '2023-05-22 13:28:40', '2023-05-22 13:28:40');
+(3, 3, 'swimsuit', 'Swimsuit', '2023-05-22 13:28:40', '2023-05-22 13:28:40'),
+(4, 3, 'evening-gown', 'Evening Gown', '2023-05-22 13:49:05', '2023-05-22 13:49:05');
 
 -- --------------------------------------------------------
 
@@ -265,7 +267,12 @@ INSERT INTO `judge_event` (`id`, `judge_id`, `event_id`, `is_chairman`, `created
 (11, 6, 3, 0, '2023-05-22 13:30:13', '2023-05-22 13:30:13'),
 (12, 7, 3, 0, '2023-05-22 13:30:19', '2023-05-22 13:30:19'),
 (13, 8, 3, 0, '2023-05-22 13:30:23', '2023-05-22 13:30:23'),
-(14, 9, 3, 0, '2023-05-22 13:30:28', '2023-05-22 13:30:28');
+(14, 9, 3, 0, '2023-05-22 13:30:28', '2023-05-22 13:30:28'),
+(15, 5, 4, 0, '2023-05-22 13:52:55', '2023-05-22 13:52:55'),
+(16, 6, 4, 0, '2023-05-22 13:53:00', '2023-05-22 13:53:00'),
+(17, 7, 4, 0, '2023-05-22 13:53:05', '2023-05-22 13:53:05'),
+(18, 8, 4, 0, '2023-05-22 13:53:10', '2023-05-22 13:53:10'),
+(19, 9, 4, 0, '2023-05-22 13:53:15', '2023-05-22 13:53:15');
 
 -- --------------------------------------------------------
 
@@ -461,7 +468,8 @@ CREATE TABLE `titles` (
 --
 
 INSERT INTO `titles` (`id`, `event_id`, `rank`, `title`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Best in Kaogma Festival Costume', '2023-05-13 13:05:01', '2023-05-17 03:25:05');
+(1, 1, 1, 'Best in Kaogma Festival Costume', '2023-05-13 13:05:01', '2023-05-17 03:25:05'),
+(2, 4, 1, 'Best in Evening Gown', '2023-05-22 13:57:02', '2023-05-22 13:57:02');
 
 --
 -- Indexes for dumped tables
@@ -630,7 +638,7 @@ ALTER TABLE `competitions`
 -- AUTO_INCREMENT for table `criteria`
 --
 ALTER TABLE `criteria`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `deductions`
@@ -648,7 +656,7 @@ ALTER TABLE `eliminations`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `judges`
@@ -660,7 +668,7 @@ ALTER TABLE `judges`
 -- AUTO_INCREMENT for table `judge_event`
 --
 ALTER TABLE `judge_event`
-  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` tinyint(3) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `noshows`
@@ -708,7 +716,7 @@ ALTER TABLE `technical_event`
 -- AUTO_INCREMENT for table `titles`
 --
 ALTER TABLE `titles`
-  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` smallint(5) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
