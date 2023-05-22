@@ -63,7 +63,8 @@ $routes = [
     [ "name" => "Eliminations", "route" => "crud/eliminations" ],
     [ "name" => "Enable / Disable", "route" => "crud/noshow" ],
     [ "name" => "Scoresheets" , "route" => "papers/scoresheets" ],
-    [ "name" => "Best Designer" , "route" => "results/best-designer" ]
+    [ "name" => "Best Designer" , "route" => "results/best-designer" ],
+    [ "name" => "Top 10" , "route" => "results/top10" ]
 ];
 ?>
 <!DOCTYPE html>
