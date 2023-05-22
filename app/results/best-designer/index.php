@@ -78,7 +78,9 @@
                 ]
             ];
             foreach($criteria as $criterion_key => $criterion) {
-                $value = $judge->getCriterionTeamRatingRow($criterion, $team)['value'];
+                $value = 0;
+                if($judge->hasEvent($criterion->getEvent()))
+                    $value = $judge->getCriterionTeamRatingRow($criterion, $team)['value'];
                 $j['criteria'][$criterion_key] = $value;
                 $j['total'] += $value;
             }
