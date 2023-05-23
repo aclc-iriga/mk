@@ -36,7 +36,7 @@
 </head>
 <body>
     <div class="container py-5">
-        <h2 class="fw-bolder">Miss Kaogma 2023 Screening</h2>
+        <h2 class="fw-bolder">MISS KAOGMA 2023</h2>
     </div>
     <div>
         <table>
