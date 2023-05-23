@@ -59,6 +59,7 @@ $routes = [
     [ "name" => "Tabulation"      , "route" => "/mk"                      ],
     [ "name" => "CRUD"            , "route" => "crud/competitions.php"    ],
     [ "name" => "User Assignments", "route" => "crud/assignment"          ],
+    [ "name" => "Minor Awards"    , "route" => "crud/minor-awards"        ],
     [ "name" => "Eliminations"    , "route" => "crud/eliminations"        ],
     [ "name" => "Enable / Disable", "route" => "crud/noshow"              ],
     [ "name" => "Scoresheets"     , "route" => "papers/scoresheets"       ],
