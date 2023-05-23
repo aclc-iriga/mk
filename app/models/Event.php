@@ -693,7 +693,9 @@ class Event extends App
         $titles = [];
         foreach($ranks as $rank) {
             $key = $this->slug.'_rank-'.$rank;
-            $titles[$key] = $this->getRankTitle($rank);
+            $title = $this->getRankTitle($rank);
+            if($title->getTitle() != '')
+                $titles[$key] = $title;
         }
         return $titles;
     }

@@ -9,12 +9,23 @@
 
     // involved criteria
     const CRITERIA = [
-        [ 'id' => 1 ], // Originality, Theme Relevance, Design & Aesthetics
-        [ 'id' => 3 ]  // Craftsmanship
+        [ 'id' => 7  ], // Beauty of the Face
+        [ 'id' => 8  ], // Figure
+        [ 'id' => 10 ]  // Intelligence
     ];
 
     // initialize titles
-    $titles = ['Best in DESIGNER of Kaogma Festival Costume'];
+    $titles = ['1', '2', '3', '4', '5'];
+
+    // initialize location quota
+    const LOCATION_QUOTA = 2;
+
+    // initialize color code
+    const COLOR_CODE = [
+        'legitimate' => 'primary',
+        'inserted'   => 'success',
+        'outplaced'  => 'danger'
+    ];
 
     // initialize competition title, criteria, judges and teams (candidates)
     $competition_title = '';
@@ -25,6 +36,9 @@
         $criterion = Criterion::findById(CRITERIA[$i]['id']);
         $criterion_key = 'criterion_' . $criterion->getId();
         $criteria[$criterion_key] = $criterion;
+    }
+    for($i = (sizeof(CRITERIA) - 1); $i >= 0; $i--) {
+        $criterion = Criterion::findById(CRITERIA[$i]['id']);
         $event = $criterion->getEvent();
         if($competition_title == '')
             $competition_title = $event->getCategory()->getCompetition()->getTitle();
@@ -36,8 +50,10 @@
         }
         foreach($event->getAllTeams() as $team) {
             $team_key = 'team_' . $team->getId();
-            if(!isset($teams[$team_key]))
-                $teams[$team_key] = $team;
+            if(!isset($teams[$team_key])) {
+                if(!$team->hasNotShownUpForEvent($event))
+                    $teams[$team_key] = $team;
+            }
         }
     }
 
@@ -64,7 +80,10 @@
                     'fractional' => 0
                 ]
             ],
-            'title' => ''
+            'title' => [
+                'slot'   => '',
+                'status' => ''
+            ]
         ];
 
         // get inputs
@@ -240,21 +259,108 @@
     // sort $unique_final_fractional_ranks
     sort($unique_final_fractional_ranks);
 
-    // determine winners
-    $winners = [];
-    $i = 0;
-    foreach($titles as $title) {
-        // update title of $unique_final_fractional_ranks[$i]'th team
+    // determine overall ranking for getting winners
+    $overall = [];
+    $overall_ctr  = 0;
+    $title_ctr    = 0;
+    $location_ctr = 0;
+    for($i = 0; $i < sizeof($unique_final_fractional_ranks); $i++) {
+        $group = [];
         foreach($teams as $team_key => $team) {
             if($results[$team_key]['rank']['final']['fractional'] == $unique_final_fractional_ranks[$i]) {
-                $results[$team_key]['title'] = $titles[$i];
-                $winners[] = $team->getId();
+                $group[] = [
+                    'team_key' => $team_key,
+                    'title'    => $titles[$title_ctr],
+                    'status'   => 'legitimate'
+                ];
+                $overall_ctr += 1;
+                if($team->isFromCamSur())
+                    $location_ctr += 1;
             }
         }
+        $title_ctr += sizeof($group);
+        $overall[] = $group;
 
-        $i += 1;
-        if($i >= sizeof($unique_final_fractional_ranks))
+        if($overall_ctr >= sizeof($titles)) {
+            if($location_ctr < LOCATION_QUOTA) {
+                // when location quota is not met...
+
+                // remove teams to give way to location quota
+                $outplaced_ctr = LOCATION_QUOTA - $location_ctr;
+                for($k = (sizeof($overall) - 1); $k >= 0; $k--) {
+                    $group = $overall[$k];
+                    for($l = 0; $l < sizeof($group); $l++) {
+                        $member = $group[$l];
+                        if(!$teams[$member['team_key']]->isFromCamSur()) {
+                            $overall[$k][$l]['title']  = '';
+                            $overall[$k][$l]['status'] = 'outplaced';
+                            $outplaced_ctr -= 1;
+                        }
+                    }
+
+                    if($outplaced_ctr <= 0)
+                        break;
+                }
+
+                // insert teams to fulfill location quota
+                $needed_ctr = LOCATION_QUOTA - $location_ctr;
+                $title_ctr   -= $needed_ctr;
+                $overall_ctr -= $needed_ctr;
+                $overall_inserted = [];
+                for($k = ($i + 1); $k < sizeof($unique_final_fractional_ranks); $k++) {
+                    $group = [];
+                    foreach($teams as $team_key => $team) {
+                        if($results[$team_key]['rank']['final']['fractional'] == $unique_final_fractional_ranks[$k]) {
+                            if($team->isFromCamSur()) {
+                                $group[] = [
+                                    'team_key' => $team_key,
+                                    'title'    => $titles[$title_ctr],
+                                    'status'   => 'inserted'
+                                ];
+
+                                $overall_ctr += 1;
+                            }
+                        }
+                    }
+
+                    $title_ctr += sizeof($group);
+                    $overall_inserted[] = $group;
+                    $needed_ctr -= sizeof($group);
+                    if($needed_ctr <= 0)
+                        break;
+                }
+                if(sizeof($overall_inserted) > 0)
+                    $overall = array_merge($overall, $overall_inserted);
+            }
             break;
+        }
+    }
+
+    // process winners
+    $tops_unordered = [];
+    for($i = 0; $i < sizeof($overall); $i++) {
+        $group = $overall[$i];
+        foreach($group as $member) {
+            $results[$member['team_key']]['title'] = [
+                'slot'   => $member['title'],
+                'status' => $member['status']
+            ];
+
+            if(in_array($member['status'], ['legitimate', 'inserted']))
+                $tops_unordered[] = $member['team_key'];
+        }
+    }
+
+    // shuffle $tops_unordered (deterministic)
+    mt_srand(695471832);
+    shuffle($tops_unordered);
+
+
+    // arrange for Top 5 Q&A
+    $event_top5_qa = Event::findBySlug('top5-qa');
+    for($i=0; $i<sizeof($tops_unordered); $i++) {
+        $team_key = $tops_unordered[$i];
+        $event_top5_qa->setTeamOrder($teams[$team_key], ($i + 1));
     }
 ?>
 <!DOCTYPE html>
@@ -281,7 +387,7 @@
             border-left: 2px solid #aaa !important;
         }
     </style>
-    <title>Best in DESIGNER of Kaogma Festival Costume | <?= $competition_title ?></title>
+    <title>TOP 5 | <?= $competition_title ?></title>
 </head>
 <body>
     <div class="p-1">
@@ -289,7 +395,7 @@
             <thead class="bt">
                 <tr class="table-secondary">
                     <th colspan="3" rowspan="2" class="text-center bt br bl bb">
-                        <h3 class="m-0">Best in DESIGNER of Kaogma Festival Costume</h3>
+                        <h2 class="m-0">TOP 5</h2>
                         <h5 class="text-uppercase"><?= $competition_title ?></h5>
                     </th>
                     <?php foreach($judges as $judge_key => $judge) { ?>
@@ -313,7 +419,7 @@
                         <h5 class="m-0">FINAL<br>RANK</h5>
                     </th>
                     <th rowspan="2" class="text-center bb bt br">
-                        <h5 class="m-0">TITLE</h5>
+                        <h5 class="m-0">SLOT</h5>
                     </th>
                 </tr>
                 <tr class="table-secondary">
@@ -332,7 +438,7 @@
             </thead>
             <tbody>
             <?php foreach($results as $team_key => $team) { ?>
-                <tr<?= $team['title'] !== '' ? ' class="table-warning"' : '' ?>>
+                <tr<?= $team['title']['status'] != '' ? ' class="table-' . COLOR_CODE[$team['title']['status']] . '"' : '' ?>>
                     <!-- number -->
                     <td class="pe-3 fw-bold bl bb" align="right">
                         <h3 class="m-0">
@@ -412,11 +518,11 @@
                         </h5>
                     </td>
 
-                    <!-- title -->
+                    <!-- slot -->
                     <td class="bb br text-center">
-                        <h6 class="m-0 fw-bold">
-                            <?= $team['title'] ?>
-                        </h6>
+                        <h5 class="m-0 fw-bold">
+                            <?= $team['title']['slot'] ?>
+                        </h5>
                     </td>
                 </tr>
             <?php } ?>
@@ -459,6 +565,23 @@
                                         </tr>
                                     </tfoot>
                                 </table>
+                                <div class="ms-5">
+                                    <table class="table table-bordered table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="2" class="text-secondary text-center">COLOR CODE</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach(COLOR_CODE as $status => $color_class) { ?>
+                                                <tr>
+                                                    <td class="table-<?= $color_class ?>" style="width: 36px; height: 5px; border: 1px solid #eee"></td>
+                                                    <td><small class="text-uppercase text-secondary"><?= $status ?></small></td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <img src="/mk/aclc-iriga.png" class="ml-auto" style="width: 200px; opacity: 0.7" alt="Official Tabulator">
                         </div>
@@ -487,60 +610,50 @@
                 <?php } ?>
             </div>
         </div>
-    </div>
 
-    <!-- Summary -->
-    <div class="row justify-content-center pt-5 mt-5" style="page-break-before: always">
-        <div class="col-12 col-sm-8 col-md-7 col-lg-6">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th colspan="3" class="text-center pb-5">
-                        <h3 class="text-uppercase"><?= $competition_title ?></h3>
-                    </th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-                $total_winners = sizeof($winners);
-                for($i = ($total_winners - 1); $i >= 0; $i--) {
-                    $team = $results['team_'.$winners[$i]];
-                    ?>
-                    <?php if($i < ($total_winners - 1)) { ?>
-                        <tr>
-                            <td colspan="3" style="height: 100px;"></td>
-                        </tr>
-                    <?php } ?>
-                    <tr>
-                        <td colspan="3" class="pa-3 text-center" style="border: 1px solid #ddd">
-                            <h3 class="m-0 fw-bold"><?= $team['title'] ?></h3>
-                        </td>
-                    </tr>
+        <!-- Summary -->
+        <div class="container-fluid mt-5" style="page-break-before: always;">
+            <div class="row justify-content-center">
+                <!-- unordered -->
+                <div class="col-md-7" align="center">
+                    <h4 class="opacity-75"><?= $competition_title ?></h4>
+                    <h1>TOP <?= sizeof($titles) ?> in Random Order</h1>
+                    <div style="width: 80%;">
+                        <table class="table table-bordered mt-3">
+                            <tbody>
+                            <?php
+                            foreach($tops_unordered as $team_key) {
+                                $team = $results[$team_key];
+                                ?>
+                                <tr>
+                                    <!-- number -->
+                                    <td class="pe-3 fw-bold text-center">
+                                        <h2 class="m-0 fw-bold">
+                                            <?= $team['info']['number'] ?>
+                                        </h2>
+                                    </td>
 
-                    <tr>
-                        <td
-                            class="text-center font-weight-bold pl-3 py-3 pr-6"
-                            style="border-left: 1px solid #ddd; border-bottom: 1px solid #ddd;"
-                        >
-                            <h2 class="m-0 fw-bold"><?= $team['info']['number'] ?></h2>
-                        </td>
-                        <td style="width: 88px; padding-top: 8px !important; padding-bottom: 8px !important; border-bottom: 1px solid #ddd;">
-                            <img
-                                style="width: 100%; border-radius: 100%;"
-                                src="../../crud/uploads/<?= $team['info']['avatar'] ?>"
-                            />
-                        </td>
-                        <td
-                            class="pa-3"
-                            style="border-bottom: 1px solid #ddd; border-right: 1px solid #ddd;"
-                        >
-                            <h5 class="m-0 text-uppercase fw-bold" style="line-height: 1.2"><?= $team['info']['name'] ?></h5>
-                            <p class="mt-1 text-body-1 mb-0" style="line-height: 1"><small><?= $team['info']['location'] ?></small></p>
-                        </td>
-                    </tr>
-                <?php } ?>
-                </tbody>
-            </table>
+                                    <!-- avatar -->
+                                    <td style="width: 88px;">
+                                        <img
+                                            src="../../crud/uploads/<?= $team['info']['avatar'] ?>"
+                                            alt="<?= $team['info']['number'] ?>"
+                                            style="width: 100%; border-radius: 100%"
+                                        >
+                                    </td>
+
+                                    <!-- name -->
+                                    <td>
+                                        <h6 class="text-uppercase m-0"><?= $team['info']['name'] ?></h6>
+                                        <small class="m-0"><?= $team['info']['location'] ?></small>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

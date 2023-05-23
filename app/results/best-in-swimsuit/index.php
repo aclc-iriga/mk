@@ -9,12 +9,12 @@
 
     // involved criteria
     const CRITERIA = [
-        [ 'id' => 1 ], // Originality, Theme Relevance, Design & Aesthetics
-        [ 'id' => 3 ]  // Craftsmanship
+        [ 'id' => 4 ], // Beauty of the Face
+        [ 'id' => 5 ]  // Figure
     ];
 
     // initialize titles
-    $titles = ['Best in DESIGNER of Kaogma Festival Costume'];
+    $titles = ['Best in Swimsuit'];
 
     // initialize competition title, criteria, judges and teams (candidates)
     $competition_title = '';
@@ -281,7 +281,7 @@
             border-left: 2px solid #aaa !important;
         }
     </style>
-    <title>Best in DESIGNER of Kaogma Festival Costume | <?= $competition_title ?></title>
+    <title>Best in Swimsuit | <?= $competition_title ?></title>
 </head>
 <body>
     <div class="p-1">
@@ -289,7 +289,7 @@
             <thead class="bt">
                 <tr class="table-secondary">
                     <th colspan="3" rowspan="2" class="text-center bt br bl bb">
-                        <h3 class="m-0">Best in DESIGNER of Kaogma Festival Costume</h3>
+                        <h2 class="m-0">Best in Swimsuit</h2>
                         <h5 class="text-uppercase"><?= $competition_title ?></h5>
                     </th>
                     <?php foreach($judges as $judge_key => $judge) { ?>

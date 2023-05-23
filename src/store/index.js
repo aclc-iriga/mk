@@ -21,7 +21,7 @@ export default createStore({
             height: 0
         },
         rating: {
-            min: 60,
+            min: 75,
             max: 100
         },
         deduction: {

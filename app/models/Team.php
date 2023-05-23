@@ -550,4 +550,24 @@ class Team extends App
     {
         return $event->hasTeamBeenEliminated($this);
     }
+
+
+    /***************************************************************************
+     * Determine if the team's location is in Camarines Sur
+     *
+     * @return bool
+     */
+    public function isFromCamSur()
+    {
+        $bool = false;
+        $haystack = strtolower($this->location);
+        $needles  = ['camarines sur', 'cam. sur', 'iriga city'];
+        foreach($needles as $needle) {
+            if(strpos($haystack, $needle) !== false) {
+                $bool = true;
+                break;
+            }
+        }
+        return $bool;
+    }
 }
