@@ -337,6 +337,7 @@
     }
 
     // process winners
+    $tops_unordered = [];
     for($i = 0; $i < sizeof($overall); $i++) {
         $group = $overall[$i];
         foreach($group as $member) {
@@ -344,7 +345,22 @@
                 'slot'   => $member['title'],
                 'status' => $member['status']
             ];
+
+            if(in_array($member['status'], ['legitimate', 'inserted']))
+                $tops_unordered[] = $member['team_key'];
         }
+    }
+
+    // shuffle $tops_unordered (deterministic)
+    mt_srand(695471832);
+    shuffle($tops_unordered);
+
+
+    // arrange for Top 5 Q&A
+    $event_top5_qa = Event::findBySlug('top5-qa');
+    for($i=0; $i<sizeof($tops_unordered); $i++) {
+        $team_key = $tops_unordered[$i];
+        $event_top5_qa->setTeamOrder($teams[$team_key], ($i + 1));
     }
 ?>
 <!DOCTYPE html>
@@ -592,6 +608,51 @@
                         </div>
                     </div>
                 <?php } ?>
+            </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="container-fluid mt-5" style="page-break-before: always;">
+            <div class="row justify-content-center">
+                <!-- unordered -->
+                <div class="col-md-7" align="center">
+                    <h4 class="opacity-75"><?= $competition_title ?></h4>
+                    <h1>TOP <?= sizeof($titles) ?> in Random Order</h1>
+                    <div style="width: 80%;">
+                        <table class="table table-bordered mt-3">
+                            <tbody>
+                            <?php
+                            foreach($tops_unordered as $team_key) {
+                                $team = $results[$team_key];
+                                ?>
+                                <tr>
+                                    <!-- number -->
+                                    <td class="pe-3 fw-bold text-center">
+                                        <h2 class="m-0 fw-bold">
+                                            <?= $team['info']['number'] ?>
+                                        </h2>
+                                    </td>
+
+                                    <!-- avatar -->
+                                    <td style="width: 88px;">
+                                        <img
+                                            src="../../crud/uploads/<?= $team['info']['avatar'] ?>"
+                                            alt="<?= $team['info']['number'] ?>"
+                                            style="width: 100%; border-radius: 100%"
+                                        >
+                                    </td>
+
+                                    <!-- name -->
+                                    <td>
+                                        <h6 class="text-uppercase m-0"><?= $team['info']['name'] ?></h6>
+                                        <small class="m-0"><?= $team['info']['location'] ?></small>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
