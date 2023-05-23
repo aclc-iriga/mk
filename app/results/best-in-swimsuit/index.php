@@ -491,7 +491,7 @@
 
     <!-- Summary -->
     <div class="row justify-content-center pt-5 mt-5" style="page-break-before: always">
-        <div class="col-12 col-sm-8 col-md-7 col-lg-6">
+        <div class="col-12 col-sm-11 col-md-8 col-lg-7">
             <table class="table">
                 <thead>
                 <tr>
@@ -512,8 +512,8 @@
                         </tr>
                     <?php } ?>
                     <tr>
-                        <td colspan="3" class="pa-3 text-center" style="border: 1px solid #ddd">
-                            <h3 class="m-0 fw-bold"><?= $team['title'] ?></h3>
+                        <td colspan="3" class="pa-4 text-center" style="border: 1px solid #ddd">
+                            <h1 class="m-0 fw-bold display-3"><?= $team['title'] ?></h1>
                         </td>
                     </tr>
 
@@ -522,20 +522,19 @@
                             class="text-center font-weight-bold pl-3 py-3 pr-6"
                             style="border-left: 1px solid #ddd; border-bottom: 1px solid #ddd;"
                         >
-                            <h2 class="m-0 fw-bold"><?= $team['info']['number'] ?></h2>
+                            <h1 class="display-3 ms-5 me-5 fw-bold"><?= $team['info']['number'] ?></h1>
                         </td>
-                        <td style="width: 88px; padding-top: 8px !important; padding-bottom: 8px !important; border-bottom: 1px solid #ddd;">
+                        <td style="width: 170px; padding-top: 10px !important; padding-bottom: 10px !important; border-bottom: 1px solid #ddd;">
                             <img
-                                style="width: 100%; border-radius: 100%;"
+                                style="width: 100%; border-radius: 100%; padding-top: 15px; padding-bottom: 15px;"
                                 src="../../crud/uploads/<?= $team['info']['avatar'] ?>"
                             />
                         </td>
                         <td
-                            class="pa-3"
                             style="border-bottom: 1px solid #ddd; border-right: 1px solid #ddd;"
                         >
-                            <h5 class="m-0 text-uppercase fw-bold" style="line-height: 1.2"><?= $team['info']['name'] ?></h5>
-                            <p class="mt-1 text-body-1 mb-0" style="line-height: 1"><small><?= $team['info']['location'] ?></small></p>
+                            <h3 class="m-0 display-6 text-uppercase fw-bold" style="line-height: 1.2; padding-right: 8px;"><?= $team['info']['name'] ?></h3>
+                            <p class="mt-1 mb-0" style="line-height: 1; font-size: 2rem;"><small><?= $team['info']['location'] ?></small></p>
                         </td>
                     </tr>
                 <?php } ?>
