@@ -351,11 +351,11 @@
     shuffle($tops_unordered);
 
     // arrange for Top 10 Q&A
-     $event_top10_qa = Event::findBySlug('top10-qa');
-     for($i=0; $i<sizeof($tops_unordered); $i++) {
-         $team_key = $tops_unordered[$i];
-         $event_top10_qa->setTeamOrder($teams[$team_key], ($i + 1));
-     }
+    $event_top10_qa = Event::findBySlug('top10-qa');
+    for($i=0; $i<sizeof($tops_unordered); $i++) {
+        $team_key = $tops_unordered[$i];
+        $event_top10_qa->setTeamOrder($teams[$team_key], ($i + 1));
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
