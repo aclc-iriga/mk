@@ -655,6 +655,27 @@
                 </div>
             </div>
         </div>
+
+        <!-- Judges (Page 2) -->
+        <div class="container-fluid mt-5 pb-2">
+            <div class="row justify-content-center">
+                <?php foreach($judges as $judge) { ?>
+                    <div class="col-md-3">
+                        <div class="mt-5 pt-3 text-center">
+                            <h6 class="mb-0"><?= $judge->getName() ?></h6>
+                        </div>
+                        <div class="text-center">
+                            <p class="mb-0">
+                                JUDGE <?= $judge->getNumber() ?>
+                                <?php if($judge->isChairmanOfEvent((array_values($criteria)[0])->getEvent())) { ?>
+                                    * (Chairman)
+                                <?php } ?>
+                            </p>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
     </div>
 </body>
 </html>

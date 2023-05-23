@@ -288,46 +288,49 @@
             <v-row
                 v-if="Object.values(winners).length > 0"
                 class="winners-page d-none justify-center pt-3"
-                style="page-break-before: always;"
             >
-                <v-col cols="12" sm="9" md="7" lg="5">
+                <v-col cols="12" sm="11" md="9" lg="7">
                     <div style="padding: 15px">
-                        <table class="table-winners" style="width: 100%">
+                        <table
+                            class="table-winners"
+                            style="width: 100%; page-break-before: always;"
+                            v-for="(winner, winnerIndex) in Object.entries(winners).reverse()"
+                            :key="winner[0]"
+                        >
                             <tbody>
-                                <template
-                                    v-for="(winner, winnerIndex) in Object.entries(winners).reverse()"
-                                    :key="winner[0]"
-                                >
-                                    <tr v-if="winnerIndex > 0">
-                                        <td colspan="3" style="height: 100px;"></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3" class="pa-3 text-center" style="border: 1px solid #ddd">
-                                            <span class="text-h4 font-weight-bold">{{ winner[1] }}</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td
-                                            class="text-h3 text-center font-weight-bold pl-3 py-3 pr-6"
-                                            style="border-left: 1px solid #ddd; border-bottom: 1px solid #ddd;"
-                                        >
-                                            {{ teams[winner[0]].number }}
-                                        </td>
-                                        <td style="width: 72px; padding-top: 8px !important; padding-bottom: 8px !important; border-bottom: 1px solid #ddd;">
+                                <tr v-if="winnerIndex > 0">
+                                    <td colspan="3" style="height: 100px;"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" class="pa-5 text-center" style="border: 1px solid #ddd;">
+                                        <div class="pa-5"><span class="text-h1 font-weight-bold">{{ winner[1] }}</span></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td
+                                        class="text-h1 text-center font-weight-bold pl-3 py-3 pr-6"
+                                        style="border-left: 1px solid #ddd; border-bottom: 1px solid #ddd;"
+                                    >
+                                        {{ teams[winner[0]].number }}
+                                    </td>
+                                    <td style="width: 196px; padding-top: 8px !important; padding-bottom: 8px !important; border-bottom: 1px solid #ddd;">
+                                        <div class="py-3">
                                             <img
-                                                style="width: 100%; border-radius: 100%;"
+                                                style="width: 196px; border-radius: 100%;"
                                                 :src="`${$store.getters.appURL}/crud/uploads/${teams[winner[0]].avatar}`"
                                             />
-                                        </td>
-                                        <td
-                                            class="pa-3"
-                                            style="border-bottom: 1px solid #ddd; border-right: 1px solid #ddd;"
-                                        >
-                                            <p class="ma-0 text-h6 text-uppercase font-weight-bold" style="line-height: 1.2">{{ teams[winner[0]].name }}</p>
-                                            <p class="mt-1 text-body-1 mb-0" style="line-height: 1"><small>{{ teams[winner[0]].location }}</small></p>
-                                        </td>
-                                    </tr>
-                                </template>
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="pa-3"
+                                        style="border-bottom: 1px solid #ddd; border-right: 1px solid #ddd;"
+                                    >
+                                        <div class="pa-3">
+                                            <p class="ma-0 text-h2 text-uppercase font-weight-bold" style="line-height: 1.2">{{ teams[winner[0]].name }}</p>
+                                            <p class="mt-1 text-h3 mb-0" style="line-height: 1"><small>{{ teams[winner[0]].location }}</small></p>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
