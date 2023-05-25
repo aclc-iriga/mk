@@ -221,8 +221,8 @@
                                     </v-card-title>
                                     <v-card-text>
                                         <p class="mb-2 text-red-darken-4">
-                                            Sorry, your ratings for <b>{{ event.title}}</b> cannot be submitted as they must be between
-                                            <big><b>{{ minRating }}</b></big> and <big><b>{{ maxRating }}</b></big>.
+                                            Sorry, your ratings for <b>{{ event.title }}</b> cannot be submitted as they must be from
+                                            <big><b>{{ minRating }}</b></big> to <big><b>{{ maxRating }}</b></big>.
                                         </p>
                                         <p class="text-red-darken-4">Please adjust your ratings and try submitting again.</p>
                                     </v-card-text>
@@ -491,8 +491,7 @@
                 let ratings = [];
                 for (let criterion of this.criteria) {
                     const rating = this.ratings[`${this.event.slug}_${team.id}`][`${this.$store.getters['auth/getUser'].id}_${criterion.id}_${team.id}`];
-                    rating.value = this.totals[`team_${team.id}`].value * (criterion.percentage / this.maxRating);
-                    // Ratings are pushed to array
+                    rating.value = this.totals[`team_${team.id}`].value * (criterion.percentage / this.totalCriteriaPercentage);
                     ratings.push(rating);
                 }
 
@@ -519,13 +518,9 @@
                 })
             },
             openSubmitDialog() {
-                // define minRating and maxRating
-                let minRating = this.minRating;
-                let maxRating = this.maxRating;
-
                 // open dialog according to ratings
                 for (let i = 0; i < this.teams.length; i++) {
-                    if (!this.teams[i].disabled && (this.totals[`team_${this.teams[i].id}`].value < minRating || this.totals[`team_${this.teams[i].id}`].value > maxRating)) {
+                    if (!this.teams[i].disabled && (this.totals[`team_${this.teams[i].id}`].value < this.minRating || this.totals[`team_${this.teams[i].id}`].value > this.maxRating)) {
                         this.inspectDialog = true
                         this.submitDialog = false;
                         break;
