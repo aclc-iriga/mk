@@ -554,6 +554,7 @@ class Team extends App
 
     /***************************************************************************
      * Determine if the team's location is in Camarines Sur
+     * according to organizers
      *
      * @return bool
      */
