@@ -31,7 +31,7 @@
             border-left: 2px solid #aaa !important;
         }
     </style>
-    <title>Scoresheets</title>
+    <title>Rating Sheets</title>
 </head>
 <body>
     <!-- RATING SHEET -->
@@ -71,12 +71,12 @@
                                 <?php } ?>
 
                                 <!-- total header -->
-                                <th class="table-primary br" style="width: 11%">
+                                <th class="table-success br" style="width: 11%">
                                     <h4 class="text-center text-uppercase m-0">TOTAL</h4>
                                 </th>
 
                                 <!-- rank header -->
-                                <th class="table-success br" style="width: 11%">
+                                <th class="table-primary br" style="width: 11%">
                                     <h4 class="text-center text-uppercase m-0">RANK</h4>
                                 </th>
                             </tr>
@@ -89,10 +89,10 @@
                                 <?php } ?>
 
                                 <!-- total spacer -->
-                                <th class="table-primary bb br"></th>
+                                <th class="table-success bb br"></th>
 
                                 <!-- rank notes -->
-                                <th class="table-success text-center bb br"><small>1 = <i>highest</i></small></th>
+                                <th class="table-primary text-center bb br"><small>1 = <i>highest</i></small></th>
                             </tr>
                         </thead>
 
@@ -128,10 +128,10 @@
                                 <?php } ?>
 
                                 <!-- total box -->
-                                <td class="table-primary bb br"></td>
+                                <td class="table-success bb br"></td>
 
                                 <!-- rank box -->
-                                <td class="table-success bb br"></td>
+                                <td class="table-primary bb br"></td>
                             </tr>
                         <?php } ?>
                         </tbody>
@@ -143,7 +143,7 @@
                                 <b>NOTE: </b>
                                 Please utilize this printed rating sheet for note-taking purposes only.
                                 Kindly record the final ratings of candidates in the digital rating sheets we will supply.
-                                If you require assistance or have any concerns, please call our attention or press the "ASK FOR HELP" button on your screens.
+                                If you require assistance or have any concerns, please call our attention or press the "ASK FOR HELP" button on your screen.
                                 Thank you.
                             </p>
                         </div>

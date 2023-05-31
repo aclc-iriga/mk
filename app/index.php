@@ -64,7 +64,7 @@ $routes = [
     [ "name" => "Minor Awards"    , "route" => "crud/minor-awards"        ],
     [ "name" => "Eliminations"    , "route" => "crud/eliminations"        ],
     [ "name" => "Enable / Disable", "route" => "crud/noshow"              ],
-    [ "name" => "Scoresheets"     , "route" => "papers/scoresheets"       ],
+    [ "name" => "Rating Sheets"   , "route" => "papers/rating-sheets"     ],
     [ "name" => "Best Designer"   , "route" => "results/best-designer"    ],
     [ "name" => "Best in Swimsuit", "route" => "results/best-in-swimsuit" ],
     [ "name" => "Top 10"          , "route" => "results/top10"            ],
