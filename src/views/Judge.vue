@@ -166,7 +166,7 @@
 								  totals[`team_${team.id}`].value.toString().trim() === ''
 							   || totals[`team_${team.id}`].value < minRating
 							   || totals[`team_${team.id}`].value > maxRating
-						   )"
+                            )"
 							:disabled="team.disabled || totals[`team_${team.id}`].is_locked"
 							:id="`input_${teamIndex}_${criteria.length}`"
 							@keydown.down.prevent="moveDown(criteria.length, teamIndex)"
