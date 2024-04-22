@@ -190,7 +190,7 @@ class User extends App
 
 
     /***************************************************************************
-     * Get online status (preferably every 2.4 seconds)
+     * Get online status (preferably every 3.2 seconds)
      *
      * @return bool
      */
@@ -198,8 +198,8 @@ class User extends App
     {
         $diff = time() - strtotime($this->pinged_at);
 
-        // online if last ping is below 13 seconds ago
-        $is_online = $diff < 13;
+        // online if last ping is below 15 seconds ago
+        $is_online = $diff < 15;
         if(!$is_online) {
             $this->setActivePortion(null);
             if($this->isCalling())

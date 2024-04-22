@@ -83,7 +83,7 @@
                         },
                         complete: () => {
                             // repeat after m milliseconds
-                            const m = 5000;
+                            const m = 6000;
                             this.pingTimer = setTimeout(() => {
                                 this.ping();
                             }, m);

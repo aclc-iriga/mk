@@ -56,8 +56,9 @@
                         class="px-0 text-grey-darken-2"
                         :class="{ 'text-grey-darken-4': coordinates.y == teamIndex && !scoreSheetDisabled }"
                     >
-                        <p class="ma-0 text-subtitle-2 text-uppercase font-weight-bold" style="line-height: 1.2">{{ team.name }}</p>
-                        <p class="mt-1 mb-0" style="line-height: 1"><small>{{ team.location }}</small></p>
+                        <p class="mt-0 me-0 mb-1 ms-0 text-subtitle-2 text-uppercase font-weight-bold" style="line-height: 1.2">{{ team.name }}</p>
+                        <p class="mb-0" v-if="team.location.trim() !== ''" style="line-height: 1; opacity: 0.8"><small><b>{{ team.location }}</b></small></p>
+                        <p class="mb-0" v-if="team.meta.trim() !== ''" style="line-height: 1; opacity: 0.85"><small>{{ team.meta }}</small></p>
                     </td>
                     <td>
                         <v-text-field
