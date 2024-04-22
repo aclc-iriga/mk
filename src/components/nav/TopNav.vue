@@ -148,7 +148,7 @@
                 if (currentTimestamp === null || pingTimestamp === null)
                     return false;
                 else
-                    return (currentTimestamp - pingTimestamp) < 13000;
+                    return (currentTimestamp - pingTimestamp) < 15000;
             }
         },
         methods: {
