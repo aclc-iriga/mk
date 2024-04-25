@@ -132,7 +132,7 @@ class Team extends App
         if(sizeof($eliminated_team_ids) > 0) {
             $sql .= "WHERE id NOT IN (" . implode(', ', $eliminated_team_ids) . ") ";
         }
-        $sql .= "ORDER BY id, number";
+        $sql .= "ORDER BY number, id";
         $stmt = $team->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -226,6 +226,24 @@ class Team extends App
             return false;
 
         return (self::findById($id) != false);
+    }
+
+
+    /***************************************************************************
+     * Get the first Team record
+     * @return Team|boolean
+     */
+    public static function first_record()
+    {
+        $first_team = false;
+        $team = new Team();
+        $stmt = $team->conn->prepare("SELECT `id` FROM $team->table ORDER BY `id` LIMIT 1");
+        $stmt->execute();
+        $result = $stmt->get_result();
+        while($row = $result->fetch_assoc()) {
+            $first_team = new Team($row['id']);
+        }
+        return $first_team;
     }
 
 
