@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2024 at 01:16 PM
+-- Generation Time: Apr 26, 2024 at 08:19 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -436,6 +436,9 @@ CREATE TABLE `teams` (
   `number` tinyint(4) NOT NULL DEFAULT 0,
   `name` varchar(255) NOT NULL,
   `location` varchar(64) NOT NULL,
+  `age` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `height` varchar(16) NOT NULL,
+  `vital_stats` varchar(32) NOT NULL,
   `avatar` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -445,27 +448,27 @@ CREATE TABLE `teams` (
 -- Dumping data for table `teams`
 --
 
-INSERT INTO `teams` (`id`, `number`, `name`, `location`, `avatar`, `created_at`, `updated_at`) VALUES
-(1, 1, 'CHRISTINE OVILLA', 'NAGA CITY', '01-christine-ovilla.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(2, 2, 'MARGA JOYCE SAYSON', 'LIBON, ALBAY', '02-marga-joyce-sayson.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(3, 3, 'KAYE PAULINE SERVIDAD', 'CAMALIGAN, CAMARINES SUR', '03-kaye-pauline-servidad.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(4, 4, 'NEOLI KRYSS ANGELINE ABARIENTOS', 'NABUA, CAMARINES SUR', '04-neoli-kryss-angeline-abarientos.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(5, 5, 'HANNAH MAE PANIBE', 'CALABANGA, CAMARINES SUR', '05-hannah-mae-panibe.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(6, 6, 'RUFFA MAE ARMILLOS', 'NABUA, CAMARINES SUR', '06-ruffa-mae-armillos.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(7, 7, 'TRIZIA MARIE ABONITA', 'SIPOCOT, CAMARINES SUR', '07-trizia-marie-abonita.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(8, 8, 'CHARLENE BOHOLANO', 'LEGAZPI CITY', '08-charlene-boholano.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(9, 9, 'MARY JOY DARILAY', 'NAGA CITY', '09-mary-joy-darilay.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(10, 10, 'SHAINA RABACAL', 'BUHI, CAMARINES SUR', '10-shaina-rabacal.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(11, 11, 'ANGELA SHERIZA TINO', 'BATO, CAMARINES SUR', '11-angela-sheriza-tino.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(12, 12, 'REINSFER KHRIZETTE RANARA', 'NAGA CITY', '12-reinsfer-khrizette-ranara.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(13, 13, 'CHRISTINE ARNEDO', 'LEGAZPI CITY', '13-christine-arnedo.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(14, 14, 'IRIS ORESCA', 'NAGA CITY', '14-iris-oresca.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(15, 15, 'ALYSSA MILDRED VILLARIÑA', 'TABACO CITY', '15-alyssa-mildred-villariña.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(16, 16, 'KATRINA CLAUDIA JAMIN', 'IRIGA CITY', '16-katrina-claudia-jamin.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(17, 17, 'TRISHIA BARNEDO', 'PASACAO, CAMARINES SUR', '17-trishia-barnedo.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(18, 18, 'MARIA YSABELLA FRANCESCA SAPIENZA', 'LEGAZPI CITY', '18-maria-ysabella-francesca-sapienza.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(19, 19, 'SEANNEL ADDERIE CRUZ', 'GUINOBATAN, ALBAY', '19-seannel-adderie-cruz.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
-(20, 20, 'MARIA PAULA BATALLA', 'CALABANGA, CAMARINES SUR', '20-maria-paula-batalla.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37');
+INSERT INTO `teams` (`id`, `number`, `name`, `location`, `age`, `height`, `vital_stats`, `avatar`, `created_at`, `updated_at`) VALUES
+(1, 1, 'CHRISTINE OVILLA', 'NAGA CITY', 0, '', '', '01-christine-ovilla.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(2, 2, 'MARGA JOYCE SAYSON', 'LIBON, ALBAY', 0, '', '', '02-marga-joyce-sayson.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(3, 3, 'KAYE PAULINE SERVIDAD', 'CAMALIGAN, CAMARINES SUR', 0, '', '', '03-kaye-pauline-servidad.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(4, 4, 'NEOLI KRYSS ANGELINE ABARIENTOS', 'NABUA, CAMARINES SUR', 0, '', '', '04-neoli-kryss-angeline-abarientos.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(5, 5, 'HANNAH MAE PANIBE', 'CALABANGA, CAMARINES SUR', 0, '', '', '05-hannah-mae-panibe.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(6, 6, 'RUFFA MAE ARMILLOS', 'NABUA, CAMARINES SUR', 0, '', '', '06-ruffa-mae-armillos.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(7, 7, 'TRIZIA MARIE ABONITA', 'SIPOCOT, CAMARINES SUR', 0, '', '', '07-trizia-marie-abonita.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(8, 8, 'CHARLENE BOHOLANO', 'LEGAZPI CITY', 0, '', '', '08-charlene-boholano.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(9, 9, 'MARY JOY DARILAY', 'NAGA CITY', 0, '', '', '09-mary-joy-darilay.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(10, 10, 'SHAINA RABACAL', 'BUHI, CAMARINES SUR', 0, '', '', '10-shaina-rabacal.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(11, 11, 'ANGELA SHERIZA TINO', 'BATO, CAMARINES SUR', 0, '', '', '11-angela-sheriza-tino.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(12, 12, 'REINSFER KHRIZETTE RANARA', 'NAGA CITY', 0, '', '', '12-reinsfer-khrizette-ranara.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(13, 13, 'CHRISTINE ARNEDO', 'LEGAZPI CITY', 0, '', '', '13-christine-arnedo.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(14, 14, 'IRIS ORESCA', 'NAGA CITY', 0, '', '', '14-iris-oresca.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(15, 15, 'ALYSSA MILDRED VILLARIÑA', 'TABACO CITY', 0, '', '', '15-alyssa-mildred-villariña.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(16, 16, 'KATRINA CLAUDIA JAMIN', 'IRIGA CITY', 0, '', '', '16-katrina-claudia-jamin.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(17, 17, 'TRISHIA BARNEDO', 'PASACAO, CAMARINES SUR', 0, '', '', '17-trishia-barnedo.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(18, 18, 'MARIA YSABELLA FRANCESCA SAPIENZA', 'LEGAZPI CITY', 0, '', '', '18-maria-ysabella-francesca-sapienza.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(19, 19, 'SEANNEL ADDERIE CRUZ', 'GUINOBATAN, ALBAY', 0, '', '', '19-seannel-adderie-cruz.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37'),
+(20, 20, 'MARIA PAULA BATALLA', 'CALABANGA, CAMARINES SUR', 0, '', '', '20-maria-paula-batalla.jpg', '2023-05-13 12:53:37', '2023-05-13 12:53:37');
 
 -- --------------------------------------------------------
 

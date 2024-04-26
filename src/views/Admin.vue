@@ -152,8 +152,9 @@
                             </v-avatar>
                         </td>
                         <td :class="{ 'bg-yellow-lighten-3': allSubmitted && team.title !== '' }">
-                            <p class="ma-0 text-subtitle-2 text-uppercase font-weight-bold" style="line-height: 1.2">{{ team.name }}</p>
-                            <p class="mt-1 mb-0" style="line-height: 1"><small>{{ team.location }}</small></p>
+                            <p class="mt-0 me-0 mb-1 ms-0 text-subtitle-2 text-uppercase font-weight-bold" style="line-height: 1.2">{{ team.name }}</p>
+                            <p class="mb-0" v-if="team.location.trim() !== ''" style="line-height: 1; opacity: 0.8"><small><b>{{ team.location }}</b></small></p>
+                            <p class="mb-0" v-if="team.meta.trim() !== ''" style="line-height: 1; opacity: 0.85"><small>{{ team.meta }}</small></p>
                         </td>
                         <td
                             v-for="(technical, technicalKey, technicalIndex) in technicals"
@@ -270,6 +271,7 @@
                                 <v-col
                                     v-for="judge in judges" :key="judge.id"
                                     :md="signatoryColumnWidth"
+                                    :sm="signatoryColumnWidth"
                                 >
                                     <v-card class="text-center mb-5" :class="{ 'text-warning': judge.calling }" flat>
                                         <v-card-title class="pt-16 pb-1 font-weight-bold">
