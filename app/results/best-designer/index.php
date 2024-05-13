@@ -46,6 +46,7 @@
     foreach($teams as $team_key => $team) {
         $t = [
             'info'    => $team->toArray(),
+            'event'   => $event,
             'inputs'  => [],
             'rating'  => [
                 'total'   => 0,
@@ -64,7 +65,8 @@
                     'fractional' => 0
                 ]
             ],
-            'title' => ''
+            'title' => '',
+            'unlocked' => false
         ];
 
         // get inputs
@@ -79,8 +81,13 @@
             ];
             foreach($criteria as $criterion_key => $criterion) {
                 $value = 0;
-                if($judge->hasEvent($criterion->getEvent()))
-                    $value = $judge->getCriterionTeamRatingRow($criterion, $team)['value'];
+                if($judge->hasEvent($criterion->getEvent())) {
+                    $ratingInfo = $judge->getCriterionTeamRatingRow($criterion, $team);
+                    $value = $ratingInfo['value'];
+                    if (!$ratingInfo['is_locked']) {
+                        $t['unlocked'] = true;
+                    }
+                }
                 $j['criteria'][$criterion_key] = $value;
                 $j['total'] += $value;
             }
@@ -256,6 +263,18 @@
         if($i >= sizeof($unique_final_fractional_ranks))
             break;
     }
+
+    // check if judges has unlocked ratings
+    $hasUnlockedRatings = false;
+    foreach ($judges as $judge) {
+        foreach ($criteria as $criterion) {
+            if ($judge->hasUnlockedRatings($criterion)) {
+                $hasUnlockedRatings = true;
+                break;
+            }
+        }
+        if ($hasUnlockedRatings) break;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -284,6 +303,11 @@
     <title>Best in DESIGNER of Kaogma Festival Costume | <?= $competition_title ?></title>
 </head>
 <body>
+    <?php if ($hasUnlockedRatings) { ?>
+        <div class="alert alert-warning text-center">
+            Warning: There are judges with unlocked ratings. Please make sure the ratings are all locked before finalizing results.
+        </div>
+    <?php } ?>
     <div class="p-1">
         <table class="table table-bordered result">
             <thead class="bt">
@@ -332,7 +356,16 @@
             </thead>
             <tbody>
             <?php foreach($results as $team_key => $team) { ?>
-                <tr<?= $team['title'] !== '' ? ' class="table-warning"' : '' ?>>
+                <?php
+                    $isUnlocked = false;
+                    foreach ($judges as $judge) {
+                        if (isset($team['event']) && $judge->hasUnlockedRatings($team['event'])) {
+                            $isUnlocked = true;
+                            break;
+                        }
+                    }
+                ?>
+                <tr<?= !$team['unlocked'] && $team['title'] !== '' ? ' class="table-warning"' : '' ?>>
                     <!-- number -->
                     <td class="pe-3 fw-bold bl bb" align="right">
                         <h3 class="m-0">
