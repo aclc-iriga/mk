@@ -265,15 +265,22 @@
     }
 
     // check if judges has unlocked ratings
-    $hasUnlockedRatings = false;
+    $judgesWithUnlockedRatings = [];
     foreach ($judges as $judge) {
+        $unlockedEvents = [];
         foreach ($criteria as $criterion) {
-            if ($judge->hasUnlockedRatings($criterion)) {
-                $hasUnlockedRatings = true;
-                break;
+            if ($judge->hasUnlockedRatings($criterion->getEvent())) {
+                $unlockedEvents[] = $criterion->getEvent()->getTitle();
             }
         }
-        if ($hasUnlockedRatings) break;
+        if (!empty($unlockedEvents)) {
+            $unlockedEvents = array_unique($unlockedEvents);
+            $judgesWithUnlockedRatings[] = [
+                'name' => $judge->getName(),
+                'number' => $judge->getNumber(),
+                'events' => implode(', ', $unlockedEvents)
+            ];
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -283,6 +290,7 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../../crud/dist/bootstrap-5.2.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../crud/dist/fontawesome-6.3.0/css/all.min.css">
     <style>
         th, td {
             vertical-align: middle;
@@ -303,11 +311,22 @@
     <title>Best in DESIGNER of Kaogma Festival Costume | <?= $competition_title ?></title>
 </head>
 <body>
-    <?php if ($hasUnlockedRatings) { ?>
-        <div class="alert alert-warning text-center">
-            Warning: There are judges with unlocked ratings. Please make sure the ratings are all locked before finalizing results.
+<?php if (!empty($judgesWithUnlockedRatings)) { ?>
+    <div class="alert alert-warning text-center">
+        <h5><i class="fas fa-exclamation-triangle me-2"></i>Warning: The following judges have unlocked ratings:</h5>
+        <div class="d-flex flex-row justify-content-center">
+            <img src="../../crud/uploads/cmon.gif" alt="Warning" style="width: 100px; height: auto; padding-right: 10px">
+            <ul class="list-unstyled mb-0">
+                <?php foreach ($judgesWithUnlockedRatings as $judgeInfo) { ?>
+                    <li style="font-weight: bolder !important; font-size: larger">
+                        <?= $judgeInfo['name'] ?> (Judge <?= $judgeInfo['number'] ?>) - Events: <?= $judgeInfo['events'] ?>
+                    </li>
+                <?php } ?>
+            </ul>
         </div>
-    <?php } ?>
+        <p class="mt-2">Please make sure the ratings are all locked before finalizing results.</p>
+    </div>
+<?php } ?>
     <div class="p-1">
         <table class="table table-bordered result">
             <thead class="bt">
@@ -356,15 +375,6 @@
             </thead>
             <tbody>
             <?php foreach($results as $team_key => $team) { ?>
-                <?php
-                    $isUnlocked = false;
-                    foreach ($judges as $judge) {
-                        if (isset($team['event']) && $judge->hasUnlockedRatings($team['event'])) {
-                            $isUnlocked = true;
-                            break;
-                        }
-                    }
-                ?>
                 <tr<?= !$team['unlocked'] && $team['title'] !== '' ? ' class="table-warning"' : '' ?>>
                     <!-- number -->
                     <td class="pe-3 fw-bold bl bb" align="right">
@@ -384,8 +394,9 @@
 
                     <!-- name -->
                     <td class="br bb">
-                        <h6 class="text-uppercase m-0"><?= $team['info']['name'] ?></h6>
-                        <small class="m-0"><?= $team['info']['location'] ?></small>
+                        <h6 class="mt-0 me-0 mb-1 ms-0 text-subtitle-2 font-weight-bold text-uppercase m-0"><?= $team['info']['name'] ?></h6>
+                        <p class="mb-0" style="line-height: 1; opacity: 0.8"><small><b><small class="m-0"><?= $team['info']['location'] ?></b></small></p>
+                        <p class="mb-0" style="line-height: 1; opacity: 0.85"><small><?= $team['info']['meta'] ?></small></p>
                     </td>
 
                     <!-- inputs -->
