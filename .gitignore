@@ -40,6 +40,7 @@ app/crud/uploads/*
 !app/crud/uploads/19-seannel-adderie-cruz.jpg
 !app/crud/uploads/20-maria-paula-batalla.jpg
 !app/crud/uploads/no-avatar.jpg
+!app/crud/uploads/cmon.gif
 !app/crud/dist
 /cypress/videos/
 /cypress/screenshots/
